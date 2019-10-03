@@ -277,8 +277,9 @@ public class Trade implements Listener {
       inv2.setItem(49, null);
       giveItemsOnLeft(inv1, player1);
       giveItemsOnLeft(inv2, player2);
-      giveOnCursor(player1);
-      giveOnCursor(player2);
+
+//      giveOnCursor(player1);
+//      giveOnCursor(player2);
       player1.closeInventory();
       player2.closeInventory();
       MsgUtils.send(player1, pl.getLang().getString("cancelled"));
@@ -288,14 +289,14 @@ public class Trade implements Listener {
     }
   }
 
-  @EventHandler
-  public void onMove(PlayerMoveEvent event) {
-    Player player = event.getPlayer();
-    if (player.equals(player1) || player.equals(player2)) {
-      if (System.currentTimeMillis() < startTime + 1000) return;
-      event.setCancelled(true);
-    }
-  }
+//  @EventHandler
+//  public void onMove(PlayerMoveEvent event) {
+//    Player player = event.getPlayer();
+//    if (player.equals(player1) || player.equals(player2)) {
+//      if (System.currentTimeMillis() < startTime + 1000) return;
+//      event.setCancelled(true);
+//    }
+//  }
 
   @EventHandler
   public void onInventoryPickupEvent(InventoryPickupItemEvent event) {
@@ -315,7 +316,8 @@ public class Trade implements Listener {
   public void onDropItem(PlayerDropItemEvent event) {
     if (player1.equals(event.getPlayer()) || player2.equals(event.getPlayer())) {
       event.setCancelled(true);
-      giveOnCursor(event.getPlayer());
+      System.out.println("Drop Update");
+//      giveOnCursor(event.getPlayer());
     }
   }
 
